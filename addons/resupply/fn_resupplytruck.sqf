@@ -145,11 +145,12 @@ _resupplyThread = [_vehicle, _is_uav, _is_static] spawn {
     };
 
     // Abort everything if no Tempest Device in proximity
-    if ({alive _x} count (_vehicle nearEntities [["O_Heli_Transport_04_ammo_F", "I_Truck_02_ammo_F", "O_Truck_03_ammo_F", "B_Truck_01_ammo_F"], RESUPPLY_TRUCK_DISTANCE]) == 0) then {
+    if ({alive _x} count (_vehicle nearEntities [["O_Heli_Transport_04_ammo_F", "I_Truck_02_ammo_F", "O_Truck_03_ammo_F", "B_Truck_01_ammo_F", "B_APC_Tracked_01_CRV_F"], RESUPPLY_TRUCK_DISTANCE]) == 0) then {
       if (_started) then { titleText ["Vehicle resupply aborted.", "PLAIN DOWN", 0.5] };
       mutexScriptInProgress = false;
       breakOut "fn_resupplyTruck";
     };
+
     // Abort everything if player gets out of vehicle
     if (vehicle player != _vehicle && {!(_is_uav || _is_static)}) then {
       if (_started) then { titleText ["Vehicle resupply aborted.", "PLAIN DOWN", 0.5] };
@@ -158,13 +159,11 @@ _resupplyThread = [_vehicle, _is_uav, _is_static] spawn {
     };
 
     // Abort if player gets in the gunner seat
-
     if (_is_static && {!isNull (gunner _vehicle)}) then {
       if (_started) then { titleText ["Vehicle resupply aborted. Someone is using the weapon.", "PLAIN DOWN", 0.5] };
       mutexScriptInProgress = false;
       breakOut "fn_resupplyTruck";
     };
-
   };
 
   private["_started"];
@@ -426,7 +425,11 @@ _resupplyThread = [_vehicle, _is_uav, _is_static] spawn {
   if ({_vehicle isKindOf _x} count ["B_Heli_Light_01_F", "B_Heli_Light_01_armed_F", "C_Heli_Light_01_civil_F"] > 0) then {
     // Add flares to those poor helis
     [[_vehicle, [_mag, _turretPath]], "A3W_fnc_addMagazineTurretLheli", _vehicle, false] call BIS_fnc_MP;
-  };  
+  };
+  
+  if ({_vehicle isKindOf _x} count ["B_Truck_01_ammo_F", "O_Truck_02_Ammo_F", "O_Truck_03_ammo_F", "I_Truck_02_ammo_F", "O_Heli_Transport_04_ammo_F"] > 0) then {
+    _vehicle setAmmoCargo 0;
+  };
   
   if (damage _vehicle > 0.001) then {
     call _checkAbortConditions;

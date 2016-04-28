@@ -223,6 +223,11 @@ if (_key != "" && isPlayer _player && {_isGenStore || _isGunStore || _isVehStore
 					_object setAmmoCargo 0;
 				};
 
+				case (_object isKindOf "B_APC_Tracked_01_CRV_F"):
+				{
+					_object setFuelCargo 0;
+				};
+				
 				case ({_object isKindOf _x} count ["C_Van_01_fuel_F", "I_G_Van_01_fuel_F", "O_Heli_Transport_04_fuel_F"] > 0):
 				{
 					_object setFuelCargo 10;
@@ -361,7 +366,6 @@ if (_key != "" && isPlayer _player && {_isGenStore || _isGunStore || _isVehStore
 					_object addMagazineTurret ["8Rnd_82mm_Mo_shells",[0]];
 					_object addMagazineTurret ["8Rnd_82mm_Mo_Flare_white",[0]];
 					_object addMagazineTurret ["8Rnd_82mm_Mo_LG",[0]];
-					_object addWeaponTurret ["FakeWeapon",[0]];
 					_object addWeaponTurret ["mortar_82mm",[0]];
 				};
 

@@ -316,6 +316,7 @@ o_restoreObject = {
   //broadcast the spawn beacon
   if ([_obj] call sh_isBeacon) then {
     pvar_spawn_beacons pushBack _obj;
+    _obj setVariable ["groupOnly", true, true];
     publicVariable "pvar_spawn_beacons";
   };
 
@@ -360,6 +361,10 @@ o_restoreObject = {
 
   if (isSCALAR(_cargo_repair)) then {
     _obj setRepairCargo _cargo_repair;
+  };
+
+  if ({_obj isKindOf _x} count ["Box_NATO_AmmoVeh_F", "Box_East_AmmoVeh_F", "Box_IND_AmmoVeh_F"] > 0) then {
+    _obj setAmmoCargo 0;
   };
 
   //AddAi to vehicle

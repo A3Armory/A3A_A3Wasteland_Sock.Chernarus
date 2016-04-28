@@ -1,3 +1,8 @@
+//@file Version: 1.0
+//@file Name: resupply_actions.sqf
+//@file Author: micovery, Gigatek
+//@file Created: 22/01/2015
+//@file Description: Vehicle actions and functions for resupply
 
 A3W_fnc_setVehicleAmmoDef = {
   private["_left", "_right"];
@@ -36,7 +41,6 @@ A3W_fnc_addMagazineTurretMortar = {
   _mortar addMagazineTurret ["8Rnd_82mm_Mo_shells",[0]];
   _mortar addMagazineTurret ["8Rnd_82mm_Mo_Flare_white",[0]];
   _mortar addMagazineTurret ["8Rnd_82mm_Mo_LG",[0]];
-  _mortar addWeaponTurret ["FakeWeapon",[0]]; 
   _mortar addWeaponTurret ["mortar_82mm",[0]];
   reload _mortar;
 };
@@ -173,14 +177,15 @@ A3W_fnc_addMagazineTurretOaheli = {
 if (isServer) exitWith {};
 
 resupply_vehicles = [
-  'O_Heli_Transport_04_ammo_F',
-  'I_Truck_02_ammo_F',
-  'O_Truck_03_ammo_F',
-  'B_Truck_01_ammo_F'
+  "O_Heli_Transport_04_ammo_F",
+  "I_Truck_02_ammo_F",
+  "O_Truck_03_ammo_F",
+  "B_Truck_01_ammo_F",
+  "B_APC_Tracked_01_CRV_F"
 ];
 
 do_resupply = {
-  (_this select 3) execVM "addons\scripts\fn_resupplytruck.sqf";
+  (_this select 3) execVM "addons\resupply\fn_resupplytruck.sqf";
 };
 
 
@@ -246,8 +251,37 @@ vehicle_resupply_watch = {
     if !(!isNull _vehicle && {
          player != _vehicle && {
          player == driver(_vehicle) && {
-         not(_vehicle isKindOf "StaticWeapon") && {
+         not({_vehicle isKindOf _x} count ["B_APC_Tracked_01_CRV_F", "StaticWeapon"] > 0) && {
          (count(nearestObjects [getPos _vehicle, resupply_vehicles, 15]) > 0)}}}}) exitWith {
+      nil
+    };
+    _vehicle
+  };
+
+  private["_vehicle", "_action_id"];
+  waitUntil {
+    waitUntil { sleep 3; _vehicle = call _vehicleCheck; !isNil "_vehicle"};
+    _action_id = _vehicle addAction [
+      format["<img image='client\icons\repair.paa'/> Resupply %1",VEHICLE_NAME(_vehicle)],
+      {_this call do_resupply;}, _vehicle, 15,false,true,"", "(isNil 'mutexScriptInProgress' || {not(mutexScriptInProgress)})"
+    ];
+    waitUntil { sleep 3; isNil {call _vehicleCheck}};
+    _vehicle removeAction _action_id;
+    sleep 3;
+ };
+};
+
+self_resupply_block_watch = {
+  diag_log format["%1 call self_resupply_block_watch", _this];
+  private["_vehicleCheck"];
+  _vehicleCheck = {
+    private["_vehicle"];
+    _vehicle = (vehicle player);
+    if !(!isNull _vehicle && {
+        _vehicle isKindOf "B_APC_Tracked_01_CRV_F" && {
+         player !=_vehicle && {
+         player == driver(_vehicle) && {
+         (count(nearestObjects [getPos _vehicle, ["O_Heli_Transport_04_ammo_F","I_Truck_02_ammo_F","O_Truck_03_ammo_F","B_Truck_01_ammo_F"], 15]) > 0)}}}}) exitWith {
       nil
     };
     _vehicle
@@ -269,3 +303,4 @@ vehicle_resupply_watch = {
 [] spawn uav_resupply_watch;
 [] spawn static_weapon_resupply_watch;
 [] spawn vehicle_resupply_watch;
+[] spawn self_resupply_block_watch;
