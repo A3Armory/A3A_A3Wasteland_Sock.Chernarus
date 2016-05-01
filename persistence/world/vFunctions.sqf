@@ -151,8 +151,8 @@ v_restoreVehicle = {
   // disables thermal equipment on loaded vehicles, comment out if you want thermal
   _obj disableTIEquipment true;
 
-  //enables thermal equipment on loaded vehicles for UAVs and UGVs
-  if ({_obj isKindOf _x} count ["UAV_02_base_F", "UGV_01_base_F"] > 0) then {
+  //enables thermal equipment on loaded vehicles for UAVs, UGVs, and Static Designators
+  if ({_obj isKindOf _x} count ["UAV_02_base_F", "UGV_01_base_F", "Static_Designator_01_base_F", "Static_Designator_02_base_F"] > 0) then {
     _obj disableTIEquipment false;
   };
 
@@ -259,6 +259,7 @@ v_restoreVehicle = {
 
       case (_obj isKindOf "B_APC_Tracked_01_CRV_F"):
       {
+          _obj setAmmoCargo 0;
           _obj setFuelCargo 0;
           _obj setRepairCargo 0;
       };

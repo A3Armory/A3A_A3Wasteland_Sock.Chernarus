@@ -28,9 +28,6 @@ X_Server = false;
 X_Client = false;
 X_JIP = false;
 
-//enable weather script
-[] execVM "addons\scripts\SimpleWeatherScript.sqf";
-
 //disable TAW grass Option 'None'
 tawvd_disablenone = true;
 
@@ -75,7 +72,7 @@ if (!isDedicated) then
 		else // Headless
 		{
 			waitUntil {!isNull player};
-			if (typeOf player == "HeadlessClient_F") then
+			if (getText (configFile >> "CfgVehicles" >> typeOf player >> "simulation") == "headlessclient") then
 			{
 				execVM "client\headless\init.sqf";
 			};
@@ -109,4 +106,5 @@ if (hasInterface || isServer) then
   [] execVM "addons\vsave\vsfunctions.sqf";
   [] execVM "addons\APOC_Airdrop_Assistance\init.sqf";
   [] execVM "addons\statusBar\statusBar.sqf";   // shows FPS and teamspeak details
+  if (isNil "drn_DynamicWeather_MainThread") then { drn_DynamicWeather_MainThread = [] execVM "addons\scripts\DynamicWeatherEffects.sqf" };
 };
