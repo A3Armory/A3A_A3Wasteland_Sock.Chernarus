@@ -23,6 +23,7 @@ A3W_spawnBeaconSpawnHeight = 1500; // Altitude in meters at which players will s
 A3W_maxSpawnBeacons = 2;		   // Maxmimum number of spawn beacons (0 = disabled)
 A3W_uavControl = "group";          // Restrict connection to UAVs based on ownership ("owner", "group", "side")
 A3W_disableUavFeed = 0;            // Force disable UAV PIP feed to prevent thermal camera abuse (0 = no, 1 = yes)
+A3W_teamBalance = 40;              // Max percentage of players allowed on Opfor/Blufor from total server population (0 = off)
 
 // Store settings
 A3W_showGunStoreStatus = 1;        // Show enemy and friendly presence at gunstores on map (0 = no, 1 = yes)
@@ -46,6 +47,13 @@ A3W_atmTransferAllTeams = 0;       // Allow money transfers between players of a
 A3W_atmEditorPlacedOnly = 0;       // Only allow access via ATMs placed from the mission editor (0 = all ATMs from towns & editor allowed, 1 = ATMs from editor only) Note: Stratis has no town ATMs, only editor ones.
 A3W_atmMapIcons = 1;               // Draw small icons on the map that indicate ATM locations (0 = no, 1 = yes)
 A3W_atmRemoveIfDisabled = 0;       // Remove all ATMs from map if A3W_atmEnabled is set to 0 (0 = no, 1 = yes)
+
+//Bounty system
+A3W_bountyEnabled = 1;             // Enable player to player bounty system (0 = no, 1 = yes)
+A3W_bountyRewardPerc = 40;         // Percentage of cost that goes to bounty reward
+A3W_bountyMinStart = 2000;         // Minimum amount of money to start a bounty on someone
+A3W_bountyMax = 120000;            // Maximum amount of money that can be set as a bounty on someone
+A3W_bountyLifetime = 3*24;         // Maximum lifetime in hours for bounty kills to store in DB (storing bounty kills is to prevent from forming groups with someone you collected bounty on)
 
 A3W_healthTime = 60*5;             //seconds till death
 A3W_hungerTime = 75*60;            //seconds till starving
@@ -117,11 +125,11 @@ A3W_vehicleLoot = 2;               // Level of loot added to vehicles (0 = none,
 A3W_territoryCaptureTime = 2*60;   // Time in seconds needed to capture a territory
 A3W_territoryPayroll = 1;          // Periodically reward sides and indie groups based on how many territories they own (0 = no, 1 = yes)
 A3W_payrollInterval = 30*60;       // Delay in seconds between each payroll
-A3W_payrollAmount = 400;           // Amount of money rewarded per territory on each payroll
+A3W_payrollAmount = 600;           // Amount of money rewarded per territory on each payroll
 
 // Mission settings
 A3W_serverMissions = 1;            // Enable server missions (0 = no, 1 = yes)
-A3W_missionsDifficulty = 0;        // Missions difficulty (0 = normal, 1 = hard)
+A3W_missionsDifficulty = 1;        // Missions difficulty (0 = normal, 1 = hard)
 A3W_missionsQuantity = 4;          // Number of missions running at the same time (0 to 6)
 A3W_missionFarAiDrawLines = 1;     // Draw small red lines on the map from mission markers to individual units & vehicles which are further away than 75m from the objective (0 = no, 1 = yes)
 A3W_heliPatrolMissions = 1;        // Enable missions involving flying helicopters piloted by AI (0 = no, 1 = yes)

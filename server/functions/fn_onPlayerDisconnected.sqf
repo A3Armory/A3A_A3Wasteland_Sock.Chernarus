@@ -4,16 +4,14 @@
 //	@file Name: fn_onPlayerDisconnected.sqf
 //	@file Author: AgentRev
 
-private ["_unit", "_id", "_uid", "_name", "_resend"];
-
-_id = _this select 0;
-_uid = _this select 1;
-_name = _this select 2;
-_unit = _this select 3;
+params ["_id", "_uid", "_name", "_owner", "_jip"];
 
 diag_log format ["Player disconnected: %1 (%2)", _name, _uid];
 
+if (_uid isEqualTo "") exitWith {};
+
 [_unit, _uid, _name] call p_disconnectSave;
+
 if (_unit getVariable ["stats_reset",false]) then {
   [_unit] spawn {
     private["_unit"];
@@ -28,7 +26,7 @@ if (_unit getVariable ["stats_reset",false]) then {
 	deleteVehicle _unit;
 };
 
-_resend = false;
+private _resend = false;
 
 // Clear player from group invites
 {

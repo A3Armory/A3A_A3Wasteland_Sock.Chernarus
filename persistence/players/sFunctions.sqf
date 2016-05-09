@@ -248,13 +248,13 @@ p_getPlayerInfo = {
     ["Name", _name],
     ["LastGroupSide", OR(_groupSide,sideUnknown)],
     ["LastPlayerSide", OR(_playerSide,sideUnknown)],
-    ["BankMoney", _player getVariable ["bmoney", 0]]
+    ["BankMoney", _player getVariable ["bmoney", 0]],
+    ["Bounty", _player getVariable ["bounty", 0]],
+    ["BountyKills", _player getVariable ["bountyKills", []]]
   ] call sock_hash;
 
   (_info)
 };
-
-
 
 p_getPlayerParking = {
   //diag_log format["%1 call p_getPlayerParking", _this];
@@ -324,7 +324,7 @@ p_addPlayerSave = {
   //diag_log format["_respawn_active = %1", _respawn_active];
 
   def(_unconscious);
-  _unconscious = (_player getVariable ["FAR_isUnconscious", 0] != 0);
+  _unconscious = (_player getVariable ["FAR_isUnconscious", 0] == 1);
   //diag_log format["_unconscious = %1", _unconscious];
 
   def(_reset_save);
