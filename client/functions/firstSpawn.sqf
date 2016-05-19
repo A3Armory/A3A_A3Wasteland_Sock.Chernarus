@@ -73,7 +73,7 @@ player addEventHandler ["WeaponAssembled",
 		_obj setVariable ["vehicle_abandoned_by", getPlayerUID _player, true];
 		_obj setVariable ["ownerN", name _player, true];
 		_obj setVariable ["baseSaving_spawningTime", nil, true];
-		_obj setVariable ["baseSaving_hoursAlive", nil, true];	
+		_obj setVariable ["baseSaving_hoursAlive", nil, true];
 		trackVehicle = _obj;
 		publicVariableServer "trackVehicle";
 
@@ -156,8 +156,7 @@ player addEventHandler ["InventoryClosed",
 		{
 			cameraOn switchCamera "EXTERNAL";
 		};
-		
- 		uiSleep 0.25;
+
 		false
 	};
 };
@@ -191,11 +190,6 @@ if (["A3W_remoteBombStoreRadius", 0] call getPublicVar > 0) then
 						titleText [format ["You are not allowed to place explosives within %1m of a store.\nThe explosive has been re-added to your inventory.", _minDist], "PLAIN DOWN", 0.5];
 					};
 				} forEach ((entities "CAManBase") + (entities "Land_Laptop_unfolded_F"));
-
-				if (mineActive _bomb) then
-				{
-					_bomb setVariable ["ownerUID", getPlayerUID player, true];
-				};
 			};
 		};
 	}];
