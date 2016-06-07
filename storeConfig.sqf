@@ -93,15 +93,15 @@ rifleArray = compileFinal str
 
 lmgArray = compileFinal str
 [
-	["MX SW LMG", "arifle_MX_SW_F", 325],
-	["MX SW LMG (Black)", "arifle_MX_SW_Black_F", 325],
-	["Mk200 LMG", "LMG_Mk200_F", 400],
-	["Zafir LMG", "LMG_Zafir_F", 500],
-	["SPMG MMG (Sand) [DLC]", "MMG_02_sand_F", 800],
-	["SPMG MMG (MTP) [DLC]", "MMG_02_camo_F", 800],
-	["SPMG MMG (Black) [DLC]", "MMG_02_black_F", 800],
-	["Navid MMG (Tan) [DLC]", "MMG_01_tan_F", 1000],
-	["Navid MMG (Hex) [DLC]", "MMG_01_hex_F", 1000]
+	["MX SW LMG", "arifle_MX_SW_F", 525],
+	["MX SW LMG (Black)", "arifle_MX_SW_Black_F", 525],
+	["Mk200 LMG", "LMG_Mk200_F", 800],
+	["Zafir LMG", "LMG_Zafir_F", 800]
+	//["SPMG MMG (Sand) [DLC]", "MMG_02_sand_F", 800],
+	//["SPMG MMG (MTP) [DLC]", "MMG_02_camo_F", 800],
+	//["SPMG MMG (Black) [DLC]", "MMG_02_black_F", 800],
+	//["Navid MMG (Tan) [DLC]", "MMG_01_tan_F", 1000],
+	//["Navid MMG (Hex) [DLC]", "MMG_01_hex_F", 1000]
 ];
 
 launcherArray = compileFinal str
@@ -591,9 +591,9 @@ genItemArray = compileFinal str
 	["Diving Goggles", "G_Diving", 100, "gogg"],
 	["Binoculars", "Binocular", 50, "binoc"],
 	["Rangefinder", "Rangefinder", 150, "binoc"],
-	["Laser Designator (NATO)", "Laserdesignator", 2500, "binoc", "WEST"],
-	["Laser Designator (CSAT)", "Laserdesignator_02", 2500, "binoc", "EAST"],
-	["Laser Designator (AAF)", "Laserdesignator_03", 2500, "binoc", "GUER"],
+	//["Laser Designator (NATO)", "Laserdesignator", 2500, "binoc", "WEST"],
+	//["Laser Designator (CSAT)", "Laserdesignator_02", 2500, "binoc", "EAST"],
+	//["Laser Designator (AAF)", "Laserdesignator_03", 2500, "binoc", "GUER"],
 	["IR Grenade (NATO)", "B_IR_Grenade", 50, "mag", "WEST"],
 	["IR Grenade (CSAT)", "O_IR_Grenade", 50, "mag", "EAST"],
 	["IR Grenade (AAF)", "I_IR_Grenade", 50, "mag", "GUER"],
