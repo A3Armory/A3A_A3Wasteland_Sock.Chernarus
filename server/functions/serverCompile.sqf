@@ -72,6 +72,7 @@ punishTeamKiller = [_path, "punishTeamKiller.sqf"] call mf_compile;
 refillPrimaryAmmo = [_path, "refillPrimaryAmmo.sqf"] call mf_compile;
 respawnEventServer = [_path, "respawnEventServer.sqf"] call mf_compile;
 setMissionSkill = [_path, "setMissionSkill.sqf"] call mf_compile;
+setMissionSkillConvoy = [_path, "setMissionSkillConvoy.sqf"] call mf_compile;
 spawnStoreObject = [_path, "spawnStoreObject.sqf"] call mf_compile;
 teamKillUnlock = [_path, "teamKillUnlock.sqf"] call mf_compile;
 teamSwitchLock = [_path, "teamSwitchLock.sqf"] call mf_compile;
