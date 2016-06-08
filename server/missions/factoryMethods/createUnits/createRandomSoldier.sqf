@@ -40,7 +40,7 @@ if (_rank != "") then
 
 _soldier spawn refillPrimaryAmmo;
 _soldier spawn addMilCap;
-_soldier call setMissionSkill;
+_soldier call setMissionSkillConvoy;
 
 _soldier addEventHandler ["Killed", server_playerDied];
 
