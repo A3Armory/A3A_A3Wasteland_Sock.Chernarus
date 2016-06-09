@@ -18,7 +18,7 @@ _soldier addUniform "U_I_GhillieSuit";
 _soldier addPrimaryWeaponItem "optic_SOS";
 
 _soldier spawn refillPrimaryAmmo;
-_soldier call setMissionSkill;
+_soldier call setMissionSkillConvoy;
 
 _soldier addEventHandler ["Killed", server_playerDied];
 
