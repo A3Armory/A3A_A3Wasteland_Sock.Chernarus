@@ -29,14 +29,7 @@ switch (_lockState) do
 
 		// Points of interest
 		_poiDist = ["A3W_poiObjLockDistance", 100] call getPublicVar;
-		_poiMarkers = [];
-
-		{
-			if (getMarkerType _x == "Empty" && [["genstore_","gunstore_","vehstore_","mission_","sunkenmission_","sniper_","roadblock_","convoymission_"], _x] call fn_startsWith) then
-			{
-				_poiMarkers pushBack _x;
-			};
-		} forEach allMapMarkers;
+		_poiMarkers = allMapMarkers select {markerType _x == "Empty" && {[["GenStore","GunStore","VehStore","Mission_","ForestMission_","LandConvoy_","SunkenMission_","Sniper_","Roadblock_"], _x] call fn_startsWith}};
 
 		if ({(getPosASL player) vectorDistance (ATLtoASL getMarkerPos _x) < _poiDist} count _poiMarkers > 0) exitWith
 		{
@@ -76,7 +69,7 @@ switch (_lockState) do
 			_object setVariable ["objectLocked", true, true];
 			_object setVariable ["ownerUID", getPlayerUID player, true];
 			_object setVariable ["ownerN", name player, true];
-			
+
 			//tell the server that this object was locked
 			trackObject = _object;
 			publicVariableServer "trackObject";

@@ -35,7 +35,7 @@ R3F_LOG_CFG_objets_remorquables =
 [
 	"Car_F",
 	"Ship_F",
-	"Plane_F",
+	"Plane",
 	"Heli_Light_01_base_F",
 	"Heli_Light_02_base_F",
 	"Heli_light_03_base_F",
@@ -95,7 +95,7 @@ R3F_LOG_CFG_objets_heliportables =
 [
 	"Car_F",
 	"Ship_F",
-	"Plane_F",
+	"Plane",
 	"Heli_Light_01_base_F"
 ];
 
