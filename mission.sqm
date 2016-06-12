@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=472;
+		nextID=473;
 	};
 	class MarkerIDProvider
 	{
@@ -65,7 +65,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=312;
+		items=313;
 		class Item0
 		{
 			dataType="Group";
@@ -6164,6 +6164,23 @@ class Mission
 			type="Empty";
 			colorName="ColorEAST";
 			id=471;
+		};
+		class Item312
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={14512.313,11.502197,5847.876};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="[this, true] call A3W_fnc_setupMissionObject";
+			};
+			id=472;
+			type="ProtectionZone_Invisible_F";
+			atlOffset=-0.36187696;
 		};		
 	};
 };
